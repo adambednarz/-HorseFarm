@@ -48,7 +48,7 @@ export default {
 
   data() {
     return {
-      leftDrawerOpen: true,
+      leftDrawerOpen: false,
       navs: [
         {
           name: 'Users',
