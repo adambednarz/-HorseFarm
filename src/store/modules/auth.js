@@ -1,6 +1,7 @@
 import Vue from 'vue';
-import { uid } from 'quasar';
 import { firebaseAuth } from 'src/boot/firebase';
+import { uid } from 'quasar';
+import { LocalStorage } from 'quasar';
 
 const state = {
   loggedIn: false,
@@ -33,14 +34,21 @@ const actions = {
         console.log('error:', error);
       });
   },
+  logoutUser() {
+    console.log('logout');
+    firebaseAuth.signOut();
+  },
   handleAuthStateChange({ commit }) {
-    console.log('handleAuthStateChange');
-    firebaseAuth.onAuthStateChanged(function(user) {
+    firebaseAuth.onAuthStateChanged(user => {
+      console.log('change state');
       if (user) {
         commit('SET_LOGGEDIN', true);
-        // User is signed in.
+        LocalStorage.set('loggedIn', true);
+        this.$router.push('/users');
       } else {
         commit('SET_LOGGEDIN', false);
+        LocalStorage.set('loggedIn', false);
+        this.$router.replace('/auth');
       }
     });
   },

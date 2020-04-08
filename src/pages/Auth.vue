@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <q-card class=" auth-tab">
+    <q-card class="auth-tab">
       <q-tabs
         class="text-grey"
         v-model="tab"
@@ -37,7 +37,7 @@ export default {
   },
   data() {
     return {
-      tab: 'register',
+      tab: 'login',
     };
   },
 };
