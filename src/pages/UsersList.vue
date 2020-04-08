@@ -1,6 +1,6 @@
 <template>
-  <div class="q-pa-md" style="max-width: 350px">
-    <q-list v-for="(user, index) in users" :key="index" bordered>
+  <div class="q-pa-md">
+    <q-list v-for="(user, index) in users" :key="index">
       <user-list-item :user="user" />
     </q-list>
   </div>

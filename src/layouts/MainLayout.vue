@@ -14,6 +14,22 @@
         <q-toolbar-title class="absolute-center">
           Horse Farm App
         </q-toolbar-title>
+        <q-btn
+          v-if="!loggedIn"
+          :to="{ name: 'Auth' }"
+          class="absolute-right"
+          flat
+          icon-right="account_circle"
+          label="Login"
+        />
+        <q-btn
+          v-if="loggedIn"
+          :to="{ name: 'Auth' }"
+          class="absolute-right"
+          flat
+          icon-right="account_circle"
+          label="Logout"
+        />
       </q-toolbar>
     </q-header>
 
@@ -38,6 +54,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import NavBar from '../components/NavBar.vue';
 
 export default {
@@ -45,7 +62,6 @@ export default {
   components: {
     NavBar,
   },
-
   data() {
     return {
       leftDrawerOpen: false,
@@ -67,6 +83,11 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    ...mapState('auth', {
+      loggedIn: 'loggedIn',
+    }),
   },
 };
 </script>

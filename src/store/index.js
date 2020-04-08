@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 import users from './modules/users';
 import horses from './modules/horses';
 import activities from './modules/activities';
+import auth from './modules/auth';
 
 Vue.use(Vuex);
 
@@ -19,6 +20,7 @@ Vue.use(Vuex);
 export default function(/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
+      auth,
       users,
       horses,
       activities,

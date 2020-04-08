@@ -19,6 +19,11 @@ const routes = [
         name: 'ActivitiesList',
         component: () => import('pages/ActivitiesList.vue'),
       },
+      {
+        path: '/auth',
+        name: 'Auth',
+        component: () => import('pages/Auth.vue'),
+      },
     ],
   },
 ];
