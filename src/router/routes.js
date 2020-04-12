@@ -1,5 +1,22 @@
 const routes = [
   {
+    path: '/auth',
+    component: () => import('layouts/AuthLayout.vue'),
+
+    children: [
+      {
+        path: '',
+        name: 'Login',
+        component: () => import('pages/Login.vue'),
+      },
+      {
+        path: 'register',
+        name: 'Register',
+        component: () => import('pages/Register.vue'),
+      },
+    ],
+  },
+  {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
@@ -19,11 +36,11 @@ const routes = [
         name: 'ActivitiesList',
         component: () => import('pages/ActivitiesList.vue'),
       },
-      {
-        path: '/auth',
-        name: 'Auth',
-        component: () => import('pages/Auth.vue'),
-      },
+      // {
+      //   path: '/auth',
+      //   name: 'Auth',
+      //   component: () => import('pages/Auth.vue'),
+      // },
     ],
   },
 ];

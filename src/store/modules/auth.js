@@ -1,7 +1,7 @@
 import Vue from 'vue';
-import { firebaseAuth } from 'src/boot/firebase';
-import { uid } from 'quasar';
-import { LocalStorage } from 'quasar';
+import { firebaseAuth, fbprovider } from 'src/boot/firebase';
+import { LocalStorage, Loading } from 'quasar';
+import { showErrorMessage } from 'src/functions/showErrorMessage';
 
 const state = {
   loggedIn: false,
@@ -13,20 +13,30 @@ const mutations = {
 };
 const actions = {
   registerUser({}, payload) {
-    console.log('register action', payload);
     firebaseAuth
       .createUserWithEmailAndPassword(payload.email, payload.password)
       .then(respone => {
         console.log('response:', respone);
       })
       .catch(error => {
-        console.log('error:', error);
+        showErrorMessage(error.message);
       });
   },
   loginUser({}, payload) {
-    console.log('register action', payload);
+    Loading.show();
     firebaseAuth
       .signInWithEmailAndPassword(payload.email, payload.password)
+      .then(respone => {
+        console.log('response:', respone);
+      })
+      .catch(error => {
+        showErrorMessage(error.message);
+      });
+  },
+  loginUserWithFacebook() {
+    Loading.show();
+    firebaseAuth
+      .signInWithPopup(fbprovider)
       .then(respone => {
         console.log('response:', respone);
       })
@@ -35,12 +45,11 @@ const actions = {
       });
   },
   logoutUser() {
-    console.log('logout');
     firebaseAuth.signOut();
   },
   handleAuthStateChange({ commit }) {
     firebaseAuth.onAuthStateChanged(user => {
-      console.log('change state');
+      Loading.hide();
       if (user) {
         commit('SET_LOGGEDIN', true);
         LocalStorage.set('loggedIn', true);

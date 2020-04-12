@@ -1,48 +1,46 @@
 <template>
-  <form @submit.prevent="onSubmit">
-    <div class="row q-mb-md">
-      <q-banner class="bg-grey-3 col">
-        <template v-slot:avatar>
-          <q-icon name="account_circle" color="primary" />
-        </template>
-        <span v-if="tab == 'register'">
-          Register to acces your todos anywhere!
-        </span>
-        <span v-else> Login to acces your todos anywhere! </span>
-      </q-banner>
-    </div>
-    <div class="row q-mb-md">
-      <q-input
-        ref="email"
-        outlined
-        class="col"
-        v-model="formData.email"
-        label="Email"
-        lazy-rules
-        :rules="[val => isValidEmail(val) || 'Email is incorect']"
-      />
-    </div>
-    <div class="row q-mb-md row">
-      <q-input
-        ref="password"
-        class="col"
-        outlined
-        type="password"
-        v-model="formData.password"
-        label="Password"
-        lazy-rules
-        :rules="[val => val.length >= 6 || 'Please use at least 6 characters']"
-      />
-    </div>
-    <div class="row q-mb-md">
-      <q-space />
-      <q-btn color="primary" :label="tab" type="submit" />
-    </div>
-  </form>
+  <div>
+    <form @submit.prevent="onSubmit">
+      <div class="row q-mb-md">
+        <q-input
+          ref="email"
+          outlined
+          class="col"
+          v-model="formData.email"
+          label="Email"
+          lazy-rules
+          :rules="[(val) => isValidEmail(val) || 'Email is incorect']"
+        />
+      </div>
+      <div class="row q-mb-md row">
+        <q-input
+          ref="password"
+          class="col"
+          outlined
+          type="password"
+          v-model="formData.password"
+          label="Password"
+          lazy-rules
+          :rules="[
+            (val) => val.length >= 6 || 'Please use at least 6 characters',
+          ]"
+        />
+      </div>
+      <div class="row q-mb-md">
+        <q-btn
+          color="primary"
+          :label="tab"
+          type="submit"
+          class="submit-button"
+        />
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
+import { firebaseAuth, fbprovider } from 'src/boot/firebase';
 
 export default {
   props: ['tab'],

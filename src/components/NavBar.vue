@@ -5,7 +5,7 @@
     </q-item-section>
 
     <q-item-section>
-      <q-item-label>{{ nav.name }}</q-item-label>
+      <q-item-label class="list-item-subtitle">{{ nav.name }}</q-item-label>
     </q-item-section>
   </q-item>
 </template>

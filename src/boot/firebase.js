@@ -19,4 +19,7 @@ let firebaseApp = firebase.initializeApp(firebaseConfig);
 let firebaseAuth = firebaseApp.auth();
 firebase.analytics();
 
-export { firebaseAuth };
+//facebook provider
+let fbprovider = new firebase.auth.FacebookAuthProvider();
+// let fbSignInWithRedirect = firebase.auth().signInWithRedirect(fbprovider);
+export { firebaseAuth, fbprovider };

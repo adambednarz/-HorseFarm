@@ -39,11 +39,17 @@ module.exports = function(ctx) {
       //            (not treeshaking Quasar; biggest bundle size; convenient)
       all: 'auto',
 
-      components: ['QBtn'],
+      components: ['QBtn', 'QIcon'],
       directives: [],
 
       // Quasar plugins
-      plugins: ['Dialog', 'LocalStorage', 'SessionStorage'],
+      plugins: [
+        'Dialog',
+        'LocalStorage',
+        'Loading',
+        'Notify',
+        'SessionStorage',
+      ],
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie
