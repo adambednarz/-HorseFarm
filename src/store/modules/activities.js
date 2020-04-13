@@ -1,6 +1,9 @@
 import Vue from 'vue';
+import activityService from 'src/servies/activityService';
 
 const state = {
+  activitiesDownloaded: false,
+  activities: {},
   ID1: {
     createdAt: '20/02/2020',
     createdBy: 'UID czy name',
@@ -9,33 +12,30 @@ const state = {
     description:
       'Ciekawo czy ze względu na optymalizację zapytań lepiej zapisywac tu id czy pełne nazwy wydajes mi się że pełne nazwy będą lepszym rozwiązaniem',
   },
-  ID1: {
-    createdAt: '20/02/2020',
-    createdBy: 'Adam',
-    type: 'jazda w terenie',
-    horse: 'Bahir',
-    description:
-      '   Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis officia quos odit ',
+};
+const mutations = {
+  ADD_ACTIVITY(state, payload) {
+    Vue.set(state.activities, payload.id, payload.activity);
   },
-  ID3: {
-    createdAt: '20/02/2019',
-    createdBy: 'Karol',
-    type: 'jazda w terenie',
-    horse: 'Emma',
-    description:
-      '   Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis officia quos odit ',
+  UPDATE_ACTIVITIES(state, payload) {
+    Object.assign(state.activities[payload.id], payload.updates);
   },
-  ID4: {
-    createdAt: '20/02/2020',
-    createdBy: 'Adam',
-    type: 'jazda w terenie',
-    horse: 'Jowisz',
-    description:
-      '   Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis officia quos odit ',
+  DELETE_ACTIVITY(state, id) {
+    Vue.delete(state.activities, id);
+  },
+  CLEAR_ACTIVITIES(state) {
+    state.activities = {};
+  },
+  SET_ACTIVITIES_DOWNLOADED(state, value) {
+    state.activitiesDownloaded = value;
   },
 };
-const mutations = {};
-const actions = {};
+const actions = {
+  addActivity({}, payload) {
+    console.log('action');
+    activityService.addActivity(payload);
+  },
+};
 const getters = {};
 
 export default {

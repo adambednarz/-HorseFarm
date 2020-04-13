@@ -1,5 +1,5 @@
 <template>
-  <div><p>Activities site</p></div>
+  <div></div>
 </template>
 
 <script>

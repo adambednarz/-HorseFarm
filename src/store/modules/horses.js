@@ -2,6 +2,7 @@ import Vue from 'vue';
 import { uid } from 'quasar';
 
 const state = {
+  horsesDownloaded: false,
   horses: {
     ID1: {
       name: 'Bahir',
@@ -223,11 +224,14 @@ const mutations = {
   DELETE_HORSE(state, id) {
     Vue.delete(state.horse, id);
   },
+  CLEAR_ACTIVITIES(state) {
+    state.horses = {};
+  },
+  SET_ACTIVITIES_DOWNLOADED(state, value) {
+    state.horsesDownloaded = value;
+  },
 };
 const actions = {
-  testA() {
-    console.log('akcja działa poprawnie');
-  },
   addHorse({ commit }, horse) {
     let horsId = uid();
     let payload = {
@@ -246,6 +250,16 @@ const actions = {
 const getters = {
   getAllHorses: state => {
     return state.horses;
+  },
+  getIdAndNameHorses: state => {
+    let horses = [];
+    Object.keys(state.horses).forEach(key => {
+      horses.push({
+        id: key,
+        name: state.horses[key].name,
+      });
+    });
+    return horses;
   },
 };
 

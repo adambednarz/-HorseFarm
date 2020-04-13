@@ -3,6 +3,7 @@ import * as firebase from 'firebase/app';
 
 import 'firebase/analytics';
 import 'firebase/auth';
+import 'firebase/database';
 
 var firebaseConfig = {
   apiKey: 'AIzaSyA_xRo9Fn3PJ-3PSRWlPKYO331U8m_DZDE',
@@ -17,9 +18,10 @@ var firebaseConfig = {
 // Initialize Firebase
 let firebaseApp = firebase.initializeApp(firebaseConfig);
 let firebaseAuth = firebaseApp.auth();
+let firebaseDb = firebaseApp.database();
 firebase.analytics();
 
 //facebook provider
 let fbprovider = new firebase.auth.FacebookAuthProvider();
-// let fbSignInWithRedirect = firebase.auth().signInWithRedirect(fbprovider);
-export { firebaseAuth, fbprovider };
+
+export { firebaseDb, firebaseAuth, fbprovider };

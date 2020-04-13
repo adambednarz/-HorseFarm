@@ -70,7 +70,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions('auth', ['loginUser']),
+    ...mapActions('auth', ['loginUser', 'loginUserWithFacebook']),
     onSubmit() {
       this.$refs.email.validate();
       this.$refs.password.validate();
@@ -81,6 +81,9 @@ export default {
     isValidEmail(email) {
       var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(String(email).toLowerCase());
+    },
+    loginWithFacebok() {
+      this.loginUserWithFacebook();
     },
   },
 };

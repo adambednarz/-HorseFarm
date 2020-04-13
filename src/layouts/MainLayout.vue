@@ -31,6 +31,9 @@
         </q-item-label>
         <q-separator />
         <NavBar v-for="(nav, index) in navs" :key="index" :nav="nav" />
+        <q-btn flat @click="logoutUser">
+          Wyloguj mnie
+        </q-btn>
       </q-list>
     </q-drawer>
 
@@ -38,7 +41,7 @@
       <router-view />
     </q-page-container>
 
-    <div class="z-max fixed-bottom text-center q-mb-xl addButton">
+    <!-- <div class="z-max fixed-bottom text-center q-mb-xl addButton">
       <q-btn
         elevated
         round
@@ -47,25 +50,24 @@
         icon="add"
         @click="showAddTask = true"
       />
-    </div>
+    </div> -->
 
     <q-footer reveal elevated class="app-footer">
       <q-toolbar class="q-px-lg justify-between">
         <q-btn flat round icon="home" :to="{ name: 'UsersList' }" />
         <q-btn
-          class="q-mr-md"
           flat
           round
           icon="calendar_today"
           :to="{ name: 'ActivitiesList' }"
         />
         <q-btn
-          class="q-ml-md"
-          flat
           round
-          icon="pets"
-          :to="{ name: 'HorsesList' }"
+          @click="showAddTask = true"
+          icon="add"
+          :to="{ name: 'UsersList' }"
         />
+        <q-btn flat round icon="pets" :to="{ name: 'HorsesList' }" />
         <q-btn
           flat
           round
@@ -74,37 +76,38 @@
         />
       </q-toolbar>
     </q-footer>
+    <q-dialog v-model="showAddTask">
+      <AddActivity @close="showAddTask = false" />
+    </q-dialog>
   </q-layout>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
 import NavBar from '../components/NavBar.vue';
+import AddActivity from 'src/components/Activities/AddActivity.vue';
 
 export default {
   name: 'MainLayout',
   components: {
     NavBar,
+    AddActivity,
   },
   data() {
     return {
+      showAddTask: false,
       right: false,
       horseLogo: 'src/statics/horse-logo.png',
       navs: [
         {
-          name: 'Users',
+          name: 'Moje konto',
           icon: 'supervisor_account',
-          page: 'UsersList',
+          page: 'account',
         },
         {
-          name: 'Horses',
+          name: 'Ustawienia',
           icon: 'supervisor_account',
-          page: 'HorsesList',
-        },
-        {
-          name: 'Activities',
-          icon: 'list',
-          page: 'ActivitiesList',
+          page: 'Settings',
         },
       ],
     };

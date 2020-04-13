@@ -97,7 +97,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions('auth', ['registerUser']),
+    ...mapActions('auth', ['registerUser', 'loginUserWithFacebook']),
     onSubmit() {
       this.$refs.email.validate();
       this.$refs.password.validate();
@@ -106,6 +106,9 @@ export default {
       if (!this.$refs.email.hasError && !this.$refs.password.hasError) {
         this.registerUser(this.formData);
       }
+    },
+    loginWithFacebok() {
+      this.loginUserWithFacebook();
     },
   },
 
