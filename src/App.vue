@@ -11,12 +11,15 @@ export default {
   name: 'App',
   methods: {
     ...mapActions('auth', ['handleAuthStateChange']),
+    ...mapActions('users', ['updateUserStatus']),
   },
   mounted() {
     this.handleAuthStateChange();
+    // this.updateUserStatus();
   },
 };
 </script>
+
 <style lang="scss">
 // .list-item-header {
 //   font-size: 24px;

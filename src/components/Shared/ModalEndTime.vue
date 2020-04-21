@@ -1,10 +1,14 @@
 <template>
-  <q-card-section class="q-pt-none">
+  <q-card-section class="q-pa-none">
     <q-input
-      clearable
       outlined
-      label="O godzinie"
+      :label="label"
       :value="dueTime"
+      :rules="[
+        val => !!val || '* Wymagane',
+        'time',
+        val => timeValidation(val) || 'Niepoprawna godzina',
+      ]"
       @input="$emit('update:dueTime', $event)"
     >
       <template v-slot:append>
@@ -24,11 +28,23 @@
 </template>
 
 <script>
+import { moment } from 'src/plugins/moment.js';
+
 export default {
   props: {
     dueTime: {},
+    startTime: {},
+    label: {},
+  },
+  methods: {
+    timeValidation(endTime) {
+      return moment('2000-01-01 ' + endTime).isAfter(
+        '2000-01-01 ' + this.startTime,
+      );
+    },
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

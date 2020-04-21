@@ -23,5 +23,6 @@ firebase.analytics();
 
 //facebook provider
 let fbprovider = new firebase.auth.FacebookAuthProvider();
+let serverTime = firebase.database.ServerValue.TIMESTAMP;
 
-export { firebaseDb, firebaseAuth, fbprovider };
+export { firebaseDb, firebaseAuth, fbprovider, serverTime };

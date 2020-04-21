@@ -4,14 +4,6 @@ import activityService from 'src/servies/activityService';
 const state = {
   activitiesDownloaded: false,
   activities: {},
-  ID1: {
-    createdAt: '20/02/2020',
-    createdBy: 'UID czy name',
-    type: 'jazda w terenie',
-    horse: 'ID czy name',
-    description:
-      'Ciekawo czy ze względu na optymalizację zapytań lepiej zapisywac tu id czy pełne nazwy wydajes mi się że pełne nazwy będą lepszym rozwiązaniem',
-  },
 };
 const mutations = {
   ADD_ACTIVITY(state, payload) {
@@ -32,7 +24,6 @@ const mutations = {
 };
 const actions = {
   addActivity({}, payload) {
-    console.log('action');
     activityService.addActivity(payload);
   },
 };

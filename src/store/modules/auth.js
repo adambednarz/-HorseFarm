@@ -1,7 +1,7 @@
-import Vue from 'vue';
 import { firebaseAuth, fbprovider } from 'src/boot/firebase';
 import { LocalStorage, Loading } from 'quasar';
 import { showErrorMessage } from 'src/functions/showErrorMessage';
+import usersService from 'src/servies/usersService';
 
 const state = {
   loggedIn: false,
@@ -13,10 +13,19 @@ const mutations = {
 };
 const actions = {
   registerUser({}, payload) {
+    let displayName = payload.displayName;
     firebaseAuth
       .createUserWithEmailAndPassword(payload.email, payload.password)
       .then(respone => {
-        console.log('response:', respone);
+        let payload = {
+          userId: respone.user.uid,
+          updates: {
+            displayName: displayName,
+            photoUrl: respone.user.photoURL,
+            loginEmail: respone.user.email,
+          },
+        };
+        usersService.updateUserWhileLogin(payload);
       })
       .catch(error => {
         showErrorMessage(error.message);
@@ -26,9 +35,7 @@ const actions = {
     Loading.show();
     firebaseAuth
       .signInWithEmailAndPassword(payload.email, payload.password)
-      .then(respone => {
-        console.log('response:', respone);
-      })
+      .then()
       .catch(error => {
         showErrorMessage(error.message);
       });
@@ -38,7 +45,16 @@ const actions = {
     firebaseAuth
       .signInWithPopup(fbprovider)
       .then(respone => {
-        console.log('response:', respone);
+        let payload = {
+          userId: respone.user.uid,
+          updates: {
+            displayName: respone.user.displayName,
+            photoUrl: respone.user.photoURL,
+            loginEmail: respone.user.email,
+          },
+        };
+
+        usersService.updateUserWhileLogin(payload);
       })
       .catch(error => {
         console.log('error:', error);
@@ -47,16 +63,21 @@ const actions = {
   logoutUser() {
     firebaseAuth.signOut();
   },
-  handleAuthStateChange({ commit }) {
+  handleAuthStateChange({ commit, dispatch }) {
     firebaseAuth.onAuthStateChanged(user => {
       Loading.hide();
       if (user) {
         commit('SET_LOGGEDIN', true);
         LocalStorage.set('loggedIn', true);
-        this.$router.push('/users');
+        // this.$router.push('/');
+        dispatch('users/fbReadData', null, { root: true });
+        dispatch('users/updateUserStatus', null, { root: true });
+        dispatch('horses/fbReadData', null, { root: true });
       } else {
         commit('SET_LOGGEDIN', false);
         LocalStorage.set('loggedIn', false);
+        commit('users/SET_USERS_DOWNLOADED', false, { root: true });
+        commit('horses/SET_HORSES_DOWNLOADED', false, { root: true });
         this.$router.replace('/auth');
       }
     });

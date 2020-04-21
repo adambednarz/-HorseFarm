@@ -54,19 +54,14 @@
 
     <q-footer reveal elevated class="app-footer">
       <q-toolbar class="q-px-lg justify-between">
-        <q-btn flat round icon="home" :to="{ name: 'UsersList' }" />
+        <q-btn flat round icon="home" :to="{ name: 'Test' }" />
         <q-btn
           flat
           round
           icon="calendar_today"
           :to="{ name: 'ActivitiesList' }"
         />
-        <q-btn
-          round
-          @click="showAddTask = true"
-          icon="add"
-          :to="{ name: 'UsersList' }"
-        />
+        <q-btn round @click="showAddTask = true" icon="add" />
         <q-btn flat round icon="pets" :to="{ name: 'HorsesList' }" />
         <q-btn
           flat

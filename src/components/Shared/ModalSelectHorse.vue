@@ -1,7 +1,6 @@
 <template>
-  <q-card-section class="q-pt-none">
+  <q-card-section class="q-pa-none">
     <q-select
-      ref="horse"
       label="Koń"
       transition-show="scale"
       transition-hide="scale"

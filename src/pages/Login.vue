@@ -28,7 +28,6 @@
           ref="password"
           class="col"
           outlined
-          type="password"
           v-model="formData.password"
           label="Password"
           lazy-rules
@@ -36,7 +35,16 @@
             val =>
               val.length >= 6 || 'Hasło musi posiadać co najmniej 6 znaków',
           ]"
-        />
+          :type="isPwd ? 'password' : 'text'"
+        >
+          <template v-slot:append>
+            <q-icon
+              :name="isPwd ? 'visibility_off' : 'visibility'"
+              class="cursor-pointer"
+              @click="isPwd = !isPwd"
+            />
+          </template>
+        </q-input>
       </div>
       <div class="row q-mb-lg">
         <q-btn color="primary" type="submit" class="submit-button"
@@ -63,6 +71,7 @@ import { mapActions } from 'vuex';
 export default {
   data() {
     return {
+      isPwd: true,
       formData: {
         email: '',
         password: '',

@@ -1,5 +1,5 @@
 <template>
-  <q-card-section class="q-pt-none">
+  <q-card-section class="q-pa-none">
     <q-select
       ref="type"
       label="Typ"

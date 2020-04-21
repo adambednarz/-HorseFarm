@@ -3,12 +3,13 @@
     <q-item clickable v-ripple>
       <q-item-section avatar>
         <q-avatar class="avatar-size">
-          <img :src="user.imgSrc" />
+          <img v-if="user.photoUrl" :src="user.photoUrl" />
+          <img v-else src="statics/user.svg" />
         </q-avatar>
       </q-item-section>
       <q-item-section>
         <q-item-label class="list-item-title"
-          >{{ user.firstName }} {{ user.secondName }}
+          >{{ user.displayName }}
           <span class="list-item-subtitle" v-if="user.nick"
             >({{ user.nick }})</span
           >
@@ -20,7 +21,7 @@
       </q-item-section>
       <q-item-section side>
         <q-btn
-          v-if="user.active"
+          v-if="user.status == 'active'"
           dense
           flat
           round
@@ -28,7 +29,7 @@
           size="8.5px"
           color="green"
         />
-        <span v-else>{{ user.lastLogin }}</span>
+        <span v-else>{{ lastActive(user.status) }}</span>
       </q-item-section>
     </q-item>
     <!-- <q-separator spaced /> -->
@@ -36,10 +37,17 @@
 </template>
 
 <script>
+import { moment } from 'src/plugins/moment.js';
+
 export default {
   props: {
     user: {
       type: Object,
+    },
+  },
+  methods: {
+    lastActive(timeSpan) {
+      return moment(timeSpan).fromNow();
     },
   },
 };

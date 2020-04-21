@@ -17,21 +17,8 @@
           ref="name"
           outlined
           class="col"
-          v-model="formData.name"
-          label="Imie"
-          lazy-rules
-          :rules="[
-            val => (val && val.length > 0) || 'Pole nie może zostać puste',
-          ]"
-        />
-      </div>
-      <div class="row q-mb-sm">
-        <q-input
-          ref="surname"
-          outlined
-          class="col"
-          v-model="formData.surname"
-          label="Nazwisko"
+          v-model="formData.displayName"
+          label="Imie i nazwisko"
           lazy-rules
           :rules="[
             val => (val && val.length > 0) || 'Pole nie może zostać puste',
@@ -54,7 +41,6 @@
           ref="password"
           class="col"
           outlined
-          type="password"
           v-model="formData.password"
           label="Password"
           lazy-rules
@@ -62,10 +48,20 @@
             val =>
               val.length >= 6 || 'Hasło musi posiadać co najmniej 6 znaków',
           ]"
-        />
+          :type="isPwd ? 'password' : 'text'"
+          hint="Password with toggle"
+        >
+          <template v-slot:append>
+            <q-icon
+              :name="isPwd ? 'visibility_off' : 'visibility'"
+              class="cursor-pointer"
+              @click="isPwd = !isPwd"
+            />
+          </template>
+        </q-input>
       </div>
       <div class="row q-mb-lg">
-        <q-btn color="primary" :label="tab" type="submit" class="submit-button"
+        <q-btn color="primary" type="submit" class="submit-button"
           >Zarejestruj mnie</q-btn
         >
       </div>
@@ -88,33 +84,32 @@ import { mapActions } from 'vuex';
 export default {
   data() {
     return {
+      isPwd: true,
       formData: {
         email: '',
         password: '',
-        name: '',
-        surname: '',
+        displayName: '',
       },
     };
   },
   methods: {
-    ...mapActions('auth', ['registerUser', 'loginUserWithFacebook']),
+    ...mapActions('auth', ['registerUser']),
     onSubmit() {
       this.$refs.email.validate();
       this.$refs.password.validate();
       this.$refs.name.validate();
-      this.$refs.surname.validate();
-      if (!this.$refs.email.hasError && !this.$refs.password.hasError) {
+      if (
+        !this.$refs.email.hasError &&
+        !this.$refs.password.hasError &&
+        !this.$refs.name.hasError
+      ) {
         this.registerUser(this.formData);
       }
     },
-    loginWithFacebok() {
-      this.loginUserWithFacebook();
+    isValidEmail(email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
     },
-  },
-
-  isValidEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
   },
 };
 </script>

@@ -2,8 +2,8 @@
   <div>
     <q-item clickable v-ripple>
       <q-item-section top avatar>
-        <q-avatar v-if="horse.photoUrl" rounded class="avatar-size">
-          <img :src="horse.photoUrl" />
+        <q-avatar v-if="activity.photoUrl" rounded class="avatar-size">
+          <img :src="activity.photoUrl" />
         </q-avatar>
         <q-avatar
           v-else
@@ -13,14 +13,15 @@
           font-size="40px"
           class="avatar-size "
         >
-          {{ horse.name.charAt(0) }}
+          {{ activity.name.charAt(0) }}
         </q-avatar>
       </q-item-section>
 
       <q-item-section>
-        <q-item-label class="list-item-title">{{ horse.name }}</q-item-label>
+        <q-item-label class="list-item-title">{{ activity.Type }}</q-item-label>
         <q-item-label class="list-item-subtitle">
-          <q-icon class="q-pb-xs" name="place" /> {{ horse.box }}</q-item-label
+          <q-icon class="q-pb-xs" name="place" />
+          {{ activity.hId }}</q-item-label
         >
       </q-item-section>
 
@@ -44,7 +45,7 @@
 <script>
 export default {
   props: {
-    horse: {
+    activity: {
       type: Object,
     },
   },
