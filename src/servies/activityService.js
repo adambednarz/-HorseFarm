@@ -120,42 +120,29 @@ export default {
       }
     });
   },
-  //  getInitialList() {
-  //   let ref = firebaseDb
-  //     .ref('allActivities')
-  //     .orderByKey()
-  //     .limitToLast(5);
-  //   let list;
-  //   ref.on('value', snap => {
-  //     list = snap.val();
-  //   });
-  //   console.log(list);
-  //   return list;
-  // },
-
-  async getScrollList(key) {
-    const ref = firebaseDb
-      .ref('allActivities')
-      .orderByKey()
-      .endAt(key)
-      .limitToLast(3);
-
-    const snapshot = await ref.once('value');
-    const list = snapshot.val();
-    console.log('key', key);
-    console.log('featch', list);
-    return list;
-  },
 
   async getInitialList() {
     const ref = firebaseDb
       .ref('allActivities')
       .orderByKey()
-      .limitToLast(5);
+      .limitToLast(10);
 
     const snapshot = await ref.once('value');
     const list = snapshot.val();
     console.log(list);
+    return list;
+  },
+  async getScrollList(key) {
+    const ref = firebaseDb
+      .ref('allActivities')
+      .orderByKey()
+      .endAt(key)
+      .limitToLast(5);
+
+    const snapshot = await ref.once('value');
+    const list = snapshot.val();
+    console.log('key', key);
+    console.log('featch', list);
     return list;
   },
 };

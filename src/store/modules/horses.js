@@ -304,6 +304,9 @@ const getters = {
     });
     return horses;
   },
+  getById: state => id => {
+    return state.horses[id];
+  },
 };
 
 export default {

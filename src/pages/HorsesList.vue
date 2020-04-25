@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <div class="q-pa-sm">
-      <q-list v-for="(horse, index) in horses" :key="index" padding>
-        <horse-list-item :horse="horse" />
-      </q-list>
-    </div>
-  </div>
+  <q-page padding>
+    <q-list v-for="(horse, index) in horses" :key="index">
+      <horse-list-item :horse="horse" />
+    </q-list>
+  </q-page>
 </template>
 
 <script>

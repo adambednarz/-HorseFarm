@@ -1,9 +1,9 @@
 <template>
-  <div class="q-pa-md">
+  <q-page padding>
     <q-list v-for="(user, index) in users" :key="index">
       <user-list-item :user="user" />
     </q-list>
-  </div>
+  </q-page>
 </template>
 
 <script>

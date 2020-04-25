@@ -17,7 +17,10 @@ export default {
   computed: {
     time() {
       // return moment('2020/04/20 17:25').format('x');
-      return moment(1587380700000).unix();
+      return moment()
+        .startOf('day')
+        .add(55, 'minutes')
+        .format('H:mm');
     },
     user() {
       return firebaseAuth.currentUser;
