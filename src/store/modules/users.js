@@ -101,6 +101,9 @@ const getters = {
   getAllUsers: state => {
     return state.users;
   },
+  getById: state => id => {
+    return state.users[id];
+  },
 };
 
 export default {

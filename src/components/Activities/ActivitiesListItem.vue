@@ -29,6 +29,17 @@
         <q-item-label class="list-item-subtitle">
           {{ activity[1].type }}</q-item-label
         >
+        <q-chip dense class="q-mr-auto">
+          <q-avatar>
+            <img
+              v-if="getUserById(activity[1].uId).photoUrl"
+              :src="getUserById(activity[1].uId).photoUrl"
+            />
+
+            <img v-else src="statics/user.svg" />
+          </q-avatar>
+          {{ getUserById(activity[1].uId).displayName }}
+        </q-chip>
       </q-item-section>
 
       <q-item-section top side class="q-mr-sm q-mt-sm">
@@ -65,6 +76,9 @@ export default {
     ...mapGetters('horses', {
       getById: 'getById',
     }),
+    ...mapGetters('users', {
+      getUserById: 'getById',
+    }),
   },
   methods: {
     lastActive(timeSpan) {
@@ -95,5 +109,8 @@ export default {
   text-decoration: none;
   // min-height: 86px;
   // padding: 8px 16px 8px 0px;
+}
+.db {
+  display: flexbox;
 }
 </style>
