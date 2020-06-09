@@ -1,6 +1,6 @@
 # HorseFarm (horsefarm)
 
-A Quasar Framework app
+Horses activity management app based on Quasar Framework.
 
 ## Install the dependencies
 ```bash
