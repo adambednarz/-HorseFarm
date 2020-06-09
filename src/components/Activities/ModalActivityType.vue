@@ -21,7 +21,8 @@ export default {
           return 'rgb(255, 183, 77)';
           break;
         case 'Padok':
-          return 'rgb(159, 122, 234)';
+          // return 'rgb(159, 122, 234)';
+          return 'rgb(82, 102, 225)';
           break;
         case 'Karuzela':
           return 'rgb(245, 101, 101)';

@@ -43,7 +43,7 @@ const actions = {
   loginUserWithFacebook() {
     Loading.show();
     firebaseAuth
-      .signInWithRedirect(fbprovider)
+      .signInWithPopup(fbprovider)
       .then(respone => {
         let payload = {
           userId: respone.user.uid,
