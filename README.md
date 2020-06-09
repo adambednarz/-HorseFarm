@@ -2,7 +2,7 @@
 
 Horses activity management app based on Quasar Framework.
 
-There is still a lot of work left but the first beta version is available at
+There is still a lot of work left but now you can see the first online beta version at
 ### https://horsefarm-a4e77.firebaseapp.com/
 
 
