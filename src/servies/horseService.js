@@ -7,11 +7,21 @@ export default {
     return firebaseAuth.currentUser.uid;
   },
   addHorse(payload) {
-    let userId = this.currentUser(); //TODO dodać kto jest właścicielem i opiekunem
-    let horseId = uid();
-    let horseRef = firebaseDb.ref('horses/' + horseId);
+    let userId = this.currentUser();
 
-    horseRef.set(payload, error => {
+    let horseRef = firebaseDb.ref('horses/');
+    let horse = {
+      name: payload.name,
+      box: payload.box,
+      breed: payload.breed,
+      birthDate: payload.birthDate,
+      owner: payload.owner,
+      attendant: payload.attendant,
+      description: payload.description,
+      photoUrl: payload.photoUrl,
+      addedBy: userId,
+    };
+    horseRef.push(horse, error => {
       if (error) {
         showErrorMessage(error.message);
       } else {

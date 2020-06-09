@@ -43,7 +43,7 @@ const actions = {
   loginUserWithFacebook() {
     Loading.show();
     firebaseAuth
-      .signInWithPopup(fbprovider)
+      .signInWithRedirect(fbprovider)
       .then(respone => {
         let payload = {
           userId: respone.user.uid,
@@ -69,7 +69,7 @@ const actions = {
       if (user) {
         commit('SET_LOGGEDIN', true);
         LocalStorage.set('loggedIn', true);
-        // this.$router.push('/');
+        this.$router.push('/activities');
         dispatch('users/fbReadData', null, { root: true });
         dispatch('users/updateUserStatus', null, { root: true });
         dispatch('horses/fbReadData', null, { root: true });

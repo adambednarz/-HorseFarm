@@ -15,7 +15,7 @@ export default {
           return 'rgb(72, 187, 120)';
           break;
         case 'Rekreacja':
-          return 'rgb(245, 101, 101)';
+          return 'rgb(212, 104, 222)';
           break;
         case 'Lonżowanie':
           return 'rgb(255, 183, 77)';
@@ -24,7 +24,7 @@ export default {
           return 'rgb(159, 122, 234)';
           break;
         case 'Karuzela':
-          return 'rgb(237, 137, 54);';
+          return 'rgb(245, 101, 101)';
           break;
         default:
           return 'rgb(255, 255, 255)';

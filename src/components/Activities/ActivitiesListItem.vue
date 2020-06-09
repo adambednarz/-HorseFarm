@@ -38,7 +38,12 @@
 
             <img v-else src="statics/user.svg" />
           </q-avatar>
-          {{ getUserById(activity[1].uId).displayName }}
+          {{
+            getUserById(activity[1].uId)
+              .displayName.split(' ')
+              .slice(0, 1)
+              .join(' ')
+          }}
         </q-chip>
       </q-item-section>
 

@@ -3,6 +3,7 @@
     <h4>Strona do testowania</h4>
     {{ time }}
     <pre>{{ user }}</pre>
+    <!-- <pre>{{ getInitialList }}</pre> -->
   </div>
 </template>
 
@@ -11,6 +12,7 @@
 // import { moment } from 'src/plugins/moment';
 import { moment } from 'src/plugins/moment.js';
 import { firebaseAuth, fbprovider } from 'src/boot/firebase';
+import { firebaseDb } from 'src/boot/firebase';
 import timeService from 'src/servies/timeService';
 
 export default {

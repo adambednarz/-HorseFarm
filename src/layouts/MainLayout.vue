@@ -98,11 +98,13 @@ export default {
           name: 'Moje konto',
           icon: 'supervisor_account',
           page: 'account',
+          accessRole: 'all',
         },
         {
-          name: 'Ustawienia',
-          icon: 'supervisor_account',
-          page: 'Settings',
+          name: 'Dodaj konia',
+          icon: 'add',
+          page: 'AddHorse',
+          accessRole: 'admin',
         },
       ],
     };

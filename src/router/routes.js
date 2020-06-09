@@ -37,6 +37,11 @@ const routes = [
         component: () => import('pages/ActivitiesList.vue'),
       },
       {
+        path: 'addhorse',
+        name: 'AddHorse',
+        component: () => import('pages/AddHorse.vue'),
+      },
+      {
         path: 'test',
         name: 'Test',
         component: () => import('pages/Test.vue'),

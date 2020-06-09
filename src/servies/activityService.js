@@ -123,7 +123,7 @@ export default {
 
   async getInitialList() {
     const ref = firebaseDb
-      .ref('allActivities')
+      .ref('allActivities/')
       .orderByKey()
       .limitToLast(10);
 
@@ -132,12 +132,13 @@ export default {
     console.log(list);
     return list;
   },
+
   async getScrollList(key) {
     const ref = firebaseDb
       .ref('allActivities')
       .orderByKey()
       .endAt(key)
-      .limitToLast(5);
+      .limitToLast(8);
 
     const snapshot = await ref.once('value');
     const list = snapshot.val();

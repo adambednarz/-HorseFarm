@@ -104,6 +104,14 @@ const getters = {
   getById: state => id => {
     return state.users[id];
   },
+  getLoggedUserRole: state => id => {
+    const userRole = state.users[id].role;
+    if (userRole) {
+      return userRole;
+    } else {
+      return null;
+    }
+  },
 };
 
 export default {
