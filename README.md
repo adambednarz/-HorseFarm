@@ -1,10 +1,10 @@
 # HorseFarm (horsefarm)
 
-Horses activity management app based on Quasar Framework.
+Horses activity management app (SPA) based on Quasar Framework.
 
 There is still a lot of work left but now you can see the first online beta version at
 ### https://horsefarm-a4e77.firebaseapp.com/
-
+!!! check mobile view
 
 ![Login view](https://scontent-waw1-1.xx.fbcdn.net/v/t1.15752-9/103458639_738446236907219_6015828664496868617_n.jpg?_nc_cat=110&_nc_sid=b96e70&_nc_ohc=QF9P-viWLiIAX8FGbfK&_nc_ht=scontent-waw1-1.xx&oh=30690bec02fcb7eef0ea2c6af7c628fa&oe=5F0587C7) 
 ![Login view](https://scontent-waw1-1.xx.fbcdn.net/v/t1.15752-9/103274217_2656827131260422_8927245054964440178_n.jpg?_nc_cat=103&_nc_sid=b96e70&_nc_ohc=JrKXPqxbaGUAX88Rfkl&_nc_ht=scontent-waw1-1.xx&oh=8127947c567248a66b8dd1bdd5993f9e&oe=5F038F00)
